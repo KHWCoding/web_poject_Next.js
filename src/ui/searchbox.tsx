@@ -1,7 +1,7 @@
 'use client';
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { useState, ChangeEvent, KeyboardEvent, FormEvent } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 //import { debounce } from "lodash";
 // 검색어 목록 띄울 때 사용 예정
