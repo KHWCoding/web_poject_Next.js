@@ -1,0 +1,46 @@
+'use client';
+
+import { ArrowUpCircleIcon } from "@heroicons/react/24/solid";
+import { throttle } from "lodash";
+import { useEffect, useState, useMemo } from "react";
+
+// throttle => 사용자가 이벤트를 몇 번이나 발생시키든 일정한 시간 간격으로 한 번만 실행되게 해줌
+const THROTTLE_WAIT = 300; // 1초: 1000
+export default function UpScrollButton() {
+    const [isVisible, setisVisible] = useState(window.scrollY > 0);
+
+    // 스크롤 위치에 따른 버튼의 랜더링 여부 결정
+    const handleIsVisible = useMemo(() => 
+        throttle(() => {
+            setisVisible(window.scrollY > 0);
+    }, THROTTLE_WAIT), []);
+
+    // 버튼 클릭 시 15ms마다 scrollStep만큼 이동
+    const onClick = () => {
+        const scrollStep = -window.scrollY / 20;
+        const scrollInterval = setInterval(() => {
+            if (window.scrollY !== 0) {
+                window.scrollBy(0, scrollStep);
+                return;
+            }
+            clearInterval(scrollInterval); // 메모리 누수 방지, 함수 호출 중단
+        }, 15)
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleIsVisible);
+        return () => {
+            window.removeEventListener("scroll", handleIsVisible);
+        }
+    }, [handleIsVisible]);
+
+    return (
+        <div className="fixed bottom-10 right-4 w-9 h-9">
+            {isVisible && (
+                <button type="button" onClick={onClick} aria-label="최상단 이동">
+                    <ArrowUpCircleIcon className="opacity-30 w-9 h-9 hover:opacity-70" />
+                </button>
+            )}
+        </div>
+    );
+}
