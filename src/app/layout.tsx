@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { GlobalNav } from "@/ui/global-nav";
 import { Footer } from "@/ui/footer";
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: '대한민국 멸종위기 생물',
