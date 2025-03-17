@@ -1,7 +1,7 @@
 'use client';
 
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { useState, ChangeEvent, KeyboardEvent } from "react";
+import { useState, ChangeEvent, KeyboardEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 //import { debounce } from "lodash";
 // 검색어 목록 띄울 때 사용 예정
@@ -10,7 +10,7 @@ export function SearchBox() {
     const router = useRouter();
     const [keyword, setKeyword] = useState("");
     
-    const submitHandler = (e: ChangeEvent<HTMLInputElement> | KeyboardEvent<HTMLInputElement>) => {
+    const submitHandler = (e: any) => {
         e.preventDefault();
         
         router.push(`/search/${keyword}`);
