@@ -1,6 +1,7 @@
 import { searchData } from "@/backend/data-actions";
 import Card from "@/ui/card";
 import { SearchBox } from "@/ui/searchbox";
+import UpScrollButton from "@/ui/up-scroll-btn";
 
 export default async function Page({ params }: { params: Promise<{ name: string }>}) {
     const param = await params;
@@ -19,6 +20,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
                     </div>
                 ))}
             </div>
+            <UpScrollButton />
         </main>
     );
 }

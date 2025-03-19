@@ -9,6 +9,7 @@ import { useState } from "react";
 
 export function GlobalNav() {
     const [isOpen, setIsOpen] = useState(false);
+    // 컴포넌트에 state 변수를 추가할 수 있는 Hook
     const close = () => setIsOpen(false);
 
     // 큰 화면일 때는 왼쪽 옆에 네비게이션바가 고정, 작은 화면일 때는 위쪽에 내비게이션 바 고정 및 메뉴를 열고 닫을 수 있는 버튼 보이게 하기

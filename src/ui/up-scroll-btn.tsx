@@ -7,13 +7,16 @@ import { useEffect, useState, useMemo } from "react";
 // throttle => 사용자가 이벤트를 몇 번이나 발생시키든 일정한 시간 간격으로 한 번만 실행되게 해줌
 const THROTTLE_WAIT = 300; // 1초: 1000
 export default function UpScrollButton() {
-    const [isVisible, setisVisible] = useState(window.scrollY > 0);
+    const [isVisible, setisVisible] = useState(typeof window === "undefined" ? false : window.scrollY > 0);
+    // ssr을 할 경우, 페이지를 처음 렌더링 하는 과정에서 window나 document의 전역 객체가 존재하지 않으므로 조건을 통해 구분
 
     // 스크롤 위치에 따른 버튼의 랜더링 여부 결정
+    // useMemo는 동일한 값을 리턴하는 함수를 반복적으로 호출할 경우 맨 처음 값을 메모리에 저장해서 필요할 때마다 또다시 계산하지 않고 메모리에서 꺼내서 재사용 하는 기법
     const handleIsVisible = useMemo(() => 
         throttle(() => {
             setisVisible(window.scrollY > 0);
     }, THROTTLE_WAIT), []);
+    // useCallback: 이전에 생성된 함수기억, useMemo: 이전에 계산된 값 기억
 
     // 버튼 클릭 시 15ms마다 scrollStep만큼 이동
     const onClick = () => {
@@ -27,6 +30,7 @@ export default function UpScrollButton() {
         }, 15)
     }
 
+    // useEffect는 컴포넌트가 랜더링 될 때마다 특정 작업을 실행할 수 있또록 하는 Hook
     useEffect(() => {
         window.addEventListener("scroll", handleIsVisible);
         return () => {

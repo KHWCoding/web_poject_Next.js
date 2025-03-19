@@ -10,22 +10,16 @@ export function SearchBox() {
     const router = useRouter();
     const [keyword, setKeyword] = useState("");
     
-    const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    const submitHandler = (e: FormEvent<HTMLFormElement> | KeyboardEvent<HTMLInputElement>) => {
         e.preventDefault();
         
         router.push(`/search/${keyword}`);
-    } // 버튼 클릭 시시 해당 라우터로 이동
-
-    const enterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        
-        router.push(`/search/${keyword}`);
-    } // 엔터키를 누를 시 해당 라우터로 이동동
+    } // 버튼을 클릭하거나 엔터키를 누를 시 해당 라우터로 이동
 
     return (
         <form className="flex border w-[16rem] lg:w-[26rem]" onSubmit={(e) => submitHandler(e)}>
             <input className="pl-1 w-56 lg:w-96" placeholder="검색" onChange={e => setKeyword(e.target.value)} 
-            onKeyDown={(e) => { if (e.key === "Enter") enterHandler(e); }} />
+            onKeyDown={(e) => { if (e.key === "Enter") submitHandler(e); }} />
             <button type="submit" className="bg-gray-200">
                 <MagnifyingGlassIcon className="w-8 h-8" />
             </button>
