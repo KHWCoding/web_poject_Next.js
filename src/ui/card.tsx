@@ -5,24 +5,24 @@ import clsx from "clsx";
 export default function Card({ data }: { data: inform; }) {
     return (
         <div className={clsx("flex flex-col justify-center items-center w-full rounded-lg shadow-xl", {
-            "bg-gray-400/80": data.type === "fungi",
-            "bg-blue-600/90": data.type === "insect",
-            "bg-red-400/50": data.type === "invertebrates",
-            "bg-orange-400/75": data.type === "amphibians",
-            "bg-blue-400": data.type === "pisces",
-            "bg-green-700/85": data.type === "embryophyte",
-            "bg-sky-200/80": data.type === "birds",
-            "bg-green-500": data.type === "reptiles",
-            "bg-purple-400/90": data.type === "mammals",
-            "bg-green-300": data.type === "seaweeds",
+            "bg-gray-400 dark:bg-gray-400/80": data.type === "fungi",
+            "bg-blue-600 dark:bg-blue-600/90": data.type === "insect",
+            "bg-red-400 dark:bg-red-400/70": data.type === "invertebrates",
+            "bg-orange-400 dark:bg-orange-400/75": data.type === "amphibians",
+            "bg-blue-400 dark:bg-blue-400/80": data.type === "pisces",
+            "bg-green-700 dark:bg-green-700/85": data.type === "embryophyte",
+            "bg-sky-200 dark:bg-sky-200/75": data.type === "birds",
+            "bg-green-500 dark:bg-green-500/80": data.type === "reptiles",
+            "bg-purple-400 dark:bg-purple-400/90": data.type === "mammals",
+            "bg-green-300 dark:bg-green-300/80": data.type === "seaweeds",
         })}>
             <div>
                 <div className="bg-white w-48 h-36">
                     <Image src={`/${data.name}.jpg`} width={192} height={144} alt={`${data.name}`} />
                 </div>
             </div>
-            <div className="flex justify-center bg-gray-100 rounded-b-lg pt-0.5 pb-0.5 w-full">
-                <div className="text-base font-semibold tracking-wider text-black p-1/2">{`${data.name}`}</div>
+            <div className="flex justify-center bg-gray-100 rounded-b-lg pt-0.5 pb-0.5 w-full dark:bg-gray-500">
+                <div className="text-base font-semibold tracking-wider text-black p-1/2 dark:text-white">{`${data.name}`}</div>
             </div>
         </div>
     )

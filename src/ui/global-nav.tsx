@@ -6,6 +6,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import { Bars3BottomLeftIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import { useState } from "react";
+import DarkModeBtn from "./dark-mode-btn";
 
 export function GlobalNav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,30 +15,30 @@ export function GlobalNav() {
 
     // 큰 화면일 때는 왼쪽 옆에 네비게이션바가 고정, 작은 화면일 때는 위쪽에 내비게이션 바 고정 및 메뉴를 열고 닫을 수 있는 버튼 보이게 하기
     return (
-        <div className="fixed top-0 z-10 flex flex-col w-full bg-white border-b border-gray-800 lg:bottom-0 lg:z-auto lg:w-72 lg:border-b-0 lg:border-r lg:border-gray-800">
+        <div className="fixed top-0 z-10 flex flex-col w-full bg-white border-b border-gray-800 lg:bottom-0 lg:z-auto lg:w-72 lg:border-b-0 lg:border-r lg:border-gray-800 dark:bg-black dark:border-gray-400">
             <div className="flex items-center justify-center px-4 py-4 h-14 lg:h-auto">
                 <Link href="/" className="group flex items-center justify-center gap-x-2.5" onClick={close}>
-                    <h1 className="font-semibold tracking-wide text-black group-hover:text-gray-400">
+                    <h1 className="font-semibold tracking-wide text-black group-hover:text-gray-400 dark:text-white">
                         대한민국 멸종위기 생물
                     </h1>
                 </Link>
             </div>
             <button type="button" className="absolute top-0 left-0 flex items-center px-4 group h-14 gap-x-2 lg:hidden" onClick={() => setIsOpen(!isOpen)}>
                 {isOpen ? (
-                    <XMarkIcon className="block w-6 text-black" />
+                    <XMarkIcon className="block w-6 text-black dark:text-white" />
                 ) : (
-                    <Bars3BottomLeftIcon className="block w-6 text-black" />
+                    <Bars3BottomLeftIcon className="block w-6 text-black dark:text-white" />
                 )}
-                <div className="font-medium text-black group-hover:text-gray-400">
+                <div className="font-medium text-black group-hover:text-gray-400 dark:text-white">
                     메뉴
                 </div>
             </button>
 
             <div className={clsx('overflow-y-auto lg:static lg:block', {
-                'fixed inset-x-0 bottom-0 top-14 mt-px bg-white' : isOpen,
+                'fixed inset-x-0 bottom-0 top-14 mt-px bg-white dark:bg-black' : isOpen,
                 hidden: !isOpen,
-            })}>
-                <nav className="px-2 pt-5 pb-24 space-y-6">
+            })}>     
+                <nav className="px-2 pt-1 pb-24 space-y-6">
                     {menus.map((section, idx) => {
                         return (
                             <div key={idx}>
@@ -50,7 +51,10 @@ export function GlobalNav() {
                         );
                     })}
                 </nav>
-            </div>
+                <div className="fixed bottom-1 h-8 w-full lg:w-72 lg:bottom-9">
+                    <DarkModeBtn />
+                </div>
+            </div> 
         </div>
     );
 }
@@ -63,8 +67,8 @@ function GlobalNavItem({ item, close, }: { item: category, close: () => false | 
         <Link onClick={close} href={`/${item.slug}`} className={clsx(
             'block rounded-md px-3 py-2 text-sm font-medium hover:text-gray-800',
             {
-                'text-gray-600 hover:bg-gray-100': !isActive,
-                'text-gray-800 bg-gray-200': isActive,
+                'text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-400 dark:text-gray-300': !isActive,
+                'text-gray-800 bg-gray-200 dark:bg-gray-600 dark:text-white': isActive,
             },
         )}
         >

@@ -8,7 +8,7 @@ export default async function Page({ params }: { params: Promise<{ category: str
     const data = await getData(param.category);
     
     return (
-        <main className="pl-4 pr-4 pt-16 pb-12 lg:pl-[19rem] lg:pt-0 bg-white">
+        <main className="pl-4 pr-4 pt-16 pb-12 min-h-screen lg:pl-[19rem] lg:pt-0 bg-white dark:bg-black">
             <div className="flex items-center justify-center p-2">
                 <SearchBox />
             </div>

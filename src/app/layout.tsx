@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { GlobalNav } from "@/ui/global-nav";
 import { Footer } from "@/ui/footer";
+import DarkMode from "@/app/useDarkMode";
 
 export const metadata: Metadata = {
   title: '대한민국 멸종위기 생물',
@@ -15,10 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className="h-full">
-      <body className="bg-white min-h-screen">
-        <GlobalNav />
-        {children}
-        <Footer />
+      <body>
+        <DarkMode>
+          <GlobalNav />
+          {children}
+          <Footer />  
+        </DarkMode>     
       </body>
     </html>
   );

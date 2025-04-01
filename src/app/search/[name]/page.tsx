@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: Promise<{ name: string 
     // 아스키문자로 변환되어 있는 param.name을 변환해줌
 
     return (
-        <main className="pl-4 pr-4 pt-16 pb-12 lg:pl-[19rem] lg:pt-0">
+        <main className="pl-4 pr-4 pt-16 pb-12 min-h-screen lg:pl-[19rem] lg:pt-0 bg-white dark:bg-black">
             <div className="flex items-center justify-center p-2">
                 <SearchBox />
             </div>

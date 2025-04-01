@@ -42,7 +42,7 @@ export default function UpScrollButton() {
         <div className="fixed bottom-10 right-4 w-9 h-9">
             {isVisible && (
                 <button type="button" onClick={onClick} aria-label="최상단 이동">
-                    <ArrowUpCircleIcon className="opacity-30 w-9 h-9 hover:opacity-70" />
+                    <ArrowUpCircleIcon className="opacity-30 w-9 h-9 hover:opacity-70 text-black dark:text-white" />
                 </button>
             )}
         </div>

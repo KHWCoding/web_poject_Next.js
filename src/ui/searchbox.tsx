@@ -17,11 +17,11 @@ export function SearchBox() {
     } // 버튼을 클릭하거나 엔터키를 누를 시 해당 라우터로 이동
 
     return (
-        <form className="flex border w-[16rem] lg:w-[26rem]" onSubmit={(e) => submitHandler(e)}>
-            <input className="pl-1 w-56 lg:w-96" placeholder="검색" onChange={e => setKeyword(e.target.value)} 
+        <form className="flex border bg-white rounded-md w-[16rem] lg:w-[26rem]" onSubmit={(e) => submitHandler(e)}>
+            <input className="pl-1 w-56 text-gray-700 bg-white rounded-l-md outline-none lg:w-96 dark:bg-black dark:text-gray-300" placeholder="검색" onChange={e => setKeyword(e.target.value)} 
             onKeyDown={(e) => { if (e.key === "Enter") submitHandler(e); }} />
-            <button type="submit" className="bg-gray-200">
-                <MagnifyingGlassIcon className="w-8 h-8" />
+            <button type="submit" className="rounded-r-md">
+                <MagnifyingGlassIcon className="w-8 h-8 bg-gray-200 rounded-r-md dark:bg-white" />
             </button>
         </form>
     );
